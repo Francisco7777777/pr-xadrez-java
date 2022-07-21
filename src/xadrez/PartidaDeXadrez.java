@@ -1,6 +1,9 @@
 package xadrez;
 
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.peca.Rei;
+import xadrez.peca.Torre;
 
 public class PartidaDeXadrez {
 	
@@ -10,6 +13,7 @@ public class PartidaDeXadrez {
 	public PartidaDeXadrez() {
 		// A partida de xadrez é que deve saber as dimensões do tabuleiro.
 		tabuleiro = new Tabuleiro(8, 8);
+		configuracaoInicial();
 	}
 	
 	
@@ -24,4 +28,11 @@ public class PartidaDeXadrez {
 		return partida;
 	}
 	
+	public void configuracaoInicial() {
+		tabuleiro.coloquarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
+		tabuleiro.coloquarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(2, 2));
+		
+		tabuleiro.coloquarPeca(new Torre(tabuleiro, Cor.PRETO), new Posicao(1, 2));
+		tabuleiro.coloquarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(1, 1));
+	}
 }
