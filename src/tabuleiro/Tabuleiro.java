@@ -10,7 +10,7 @@ public class Tabuleiro {
 	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
 			throw new TabuleiroException("Erro ao criar o tabuleiro: "
-					+ "É necessário que haja pelo menos 1 linha e uma coluna.\r\n");
+					+ "E necessario que haja pelo menos 1 linha e uma coluna.\r\n");
 		}
 		this.linhas = linhas;
 		this.colunas = colunas;
@@ -41,13 +41,32 @@ public class Tabuleiro {
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
+	
 	public void colocarPeca(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
-			throw new TabuleiroException("Já é uma peça na posição! ");
+			throw new TabuleiroException("Já á uma peça na posição! " + posicao);
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
 	}
+	
+	public Peca removerPeca(Posicao posicao) {
+		if (!posicaoExiste(posicao)) {
+			throw new TabuleiroException("Erro: Posição não existe! ");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		
+		// auxiliar recebe a posição peça no tabuleiro.
+		Peca auxiliar = peca(posicao);
+		auxiliar.posicao = null; 	 			// A peça foi retirada do tabuleiro.
+				
+		// Na posição do tabuleiro receberá null. Indicando que a peça foi retirada.  
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return auxiliar;
+	}
+	
 	
 	public boolean posicaoExiste(Posicao posicao) {
 		return posicaoExiste(posicao.getLinha(), posicao.getColuna());
