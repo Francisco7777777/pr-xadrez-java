@@ -32,17 +32,18 @@ public class PartidaDeXadrez {
 	
 	public PecaDeXadrez executarMovimentoDeXadrez (PosicaoDeXadrez pInicial, PosicaoDeXadrez pFinal) {
 		Posicao inicial = pInicial.posicionar();
-		Posicao pofinal = pFinal.posicionar();
+		Posicao poFinal = pFinal.posicionar();
 		
 		validarPosicaoInicial(inicial);
-		Peca pecaCapiturada = FazerMover(inicial, pofinal);
+		validarPosicaoAlvo(inicial, poFinal);
+		Peca pecaCapiturada = FazerMover(inicial, poFinal);
 		return (PecaDeXadrez) pecaCapiturada;
 	}
 
-	private Peca FazerMover(Posicao inicial, Posicao pofinal) {
+	private Peca FazerMover(Posicao inicial, Posicao poFinal) {
 		Peca p = tabuleiro.removerPeca(inicial);
-		Peca pecaCapiturada = tabuleiro.removerPeca(pofinal);
-		tabuleiro.colocarPeca(p, pofinal);
+		Peca pecaCapiturada = tabuleiro.removerPeca(poFinal);
+		tabuleiro.colocarPeca(p, poFinal);
 		return pecaCapiturada;
 	}
 
@@ -55,6 +56,12 @@ public class PartidaDeXadrez {
 		}
 	}
 
+	private void validarPosicaoAlvo(Posicao inicial, Posicao poFinal) {
+		if (!tabuleiro.peca(inicial).movimentoPossivel(poFinal)) {
+			throw  new XadrezException("A peca nao pode ser movida para a posicao escolhida");
+		}
+	}
+	
 	public void configuracaoInicial() {
 		colocarNovaPeca('b', 3, new Torre(tabuleiro, Cor.BRANCO));
 		colocarNovaPeca('b', 4, new Rei(tabuleiro, Cor.BRANCO));
