@@ -29,14 +29,14 @@ public class Tabuleiro {
 	
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExiste(linha, coluna)) {
-			throw new TabuleiroException("Erro: Posição não existe! ");
+			throw new TabuleiroException("Erro: Posicao nao existe! ");
 		}
 		return pecas[linha][coluna];
 	}
 	
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Erro: Posição não existe! ");
+			throw new TabuleiroException("Erro: Posição nao existe! ");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
@@ -44,7 +44,7 @@ public class Tabuleiro {
 	
 	public void colocarPeca(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
-			throw new TabuleiroException("Já á uma peça na posição! " + posicao);
+			throw new TabuleiroException("Ja a uma peca na posicao! " + posicao);
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
@@ -78,7 +78,7 @@ public class Tabuleiro {
 	
 	public boolean temUmaPeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Erro: Posição não existe! ");
+			throw new TabuleiroException("Erro: Posicao nao existe! ");
 		}
 		return peca(posicao) != null;
 	}

@@ -1,9 +1,11 @@
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import tabuleiro.TabuleiroException;
 import xadrez.peca.Rei;
 import xadrez.peca.Torre;
 
@@ -13,6 +15,8 @@ public class PartidaDeXadrez {
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	
+	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+	private List<Peca> pecasCapituradas = new ArrayList<>();
 	
 	public PartidaDeXadrez() {
 		// A partida de xadrez é que deve saber as dimensões do tabuleiro.
@@ -55,37 +59,44 @@ public class PartidaDeXadrez {
 		
 		validarPosicaoInicial(inicial);
 		validarPosicaoAlvo(inicial, poFinal);
-		Peca pecaCapiturada = FazerMover(inicial, poFinal);
+		Peca pecaCapiturada = realizarMovimento(inicial, poFinal);
 		proximoTurno();
 		return (PecaDeXadrez) pecaCapiturada;
 	}
 
-	private Peca FazerMover(Posicao inicial, Posicao poFinal) {
+	private Peca realizarMovimento(Posicao inicial, Posicao poFinal) {
 		Peca p = tabuleiro.removerPeca(inicial);
 		Peca pecaCapiturada = tabuleiro.removerPeca(poFinal);
+		
+		if (pecaCapiturada != null) {
+			pecasNoTabuleiro.remove(pecaCapiturada);
+			pecasCapituradas.add(pecaCapiturada);
+		}
+		
 		tabuleiro.colocarPeca(p, poFinal);
 		return pecaCapiturada;
 	}
 
 	private void validarPosicaoInicial(Posicao inicial) {
 		if (!tabuleiro.temUmaPeca(inicial)) {
-			throw new TabuleiroException("Não há peça na posição de origem");
+			throw new XadrezException("Nao ha peca na posicao de origem!");
 		}
 		if (jogadorAtual != ((PecaDeXadrez) tabuleiro.peca(inicial)).getCor()) {
-			throw new TabuleiroException("A peça escolhida não é sua!");
+			throw new XadrezException("A peca escolhida nao e sua!");
 		}
 		if (!tabuleiro.peca(inicial).existeAlgumMovimentoPossivel()) {
-			throw new XadrezException("Nao existe movimentos possiveis para a peca escolhida");
+			throw new XadrezException("Nao existe movimentos possiveis para a peca escolhida!");
 		}
 	}
 
 	private void validarPosicaoAlvo(Posicao inicial, Posicao poFinal) {
 		if (!tabuleiro.peca(inicial).movimentoPossivel(poFinal)) {
-			throw  new XadrezException("A peca nao pode ser movida para a posicao escolhida");
+			throw  new XadrezException("A peca nao pode ser movida para a posicao escolhida!");
 		}
 	}
 	
 	private void proximoTurno() {
+		turno ++;
 		jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
 	}
 	
@@ -98,6 +109,7 @@ public class PartidaDeXadrez {
 	
 	private void colocarNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.colocarPeca(peca, new PosicaoDeXadrez(coluna, linha).posicionar());
+		pecasNoTabuleiro.add(peca);
 	}
 	
 }
