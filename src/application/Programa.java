@@ -23,6 +23,10 @@ public class Programa {
 				System.out.print("P inicial: ");
 				PosicaoDeXadrez inicial = UI.lerPosicaoDoXadrez(sc);
 				
+				boolean[][] movimentosPossiveis = partidaDeXadrez.movimentosPossiveis(inicial);
+				UI.limparTela();
+				UI.imprimirTabuleiro(partidaDeXadrez.obterPeca(), movimentosPossiveis);
+				
 				System.out.println();
 				System.out.print("P final: ");
 				PosicaoDeXadrez  pfinal = UI.lerPosicaoDoXadrez(sc);

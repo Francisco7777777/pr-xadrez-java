@@ -30,6 +30,12 @@ public class PartidaDeXadrez {
 		return partida;
 	}
 	
+	public boolean[][] movimentosPossiveis(PosicaoDeXadrez posicaoDeOrigem) {
+		Posicao posicao = posicaoDeOrigem.posicionar();
+		validarPosicaoInicial(posicao);
+		return tabuleiro.peca(posicao).movimentosPossiveis();
+	}
+	
 	public PecaDeXadrez executarMovimentoDeXadrez (PosicaoDeXadrez pInicial, PosicaoDeXadrez pFinal) {
 		Posicao inicial = pInicial.posicionar();
 		Posicao poFinal = pFinal.posicionar();

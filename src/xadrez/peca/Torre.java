@@ -13,7 +13,7 @@ public class Torre extends PecaDeXadrez {
 
 	@Override
 	public String toString() {
-		return "T ";
+		return "T";
 	}
 
 	@Override
