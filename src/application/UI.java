@@ -62,8 +62,8 @@ public class UI {
 		} else {
 			System.out.println("CHECKMATE!!!");
 			System.out.println("Vencedor: " + partidaDeXadrez.getJogadorAtual());
-			System.out.println("Valor de check = " + partidaDeXadrez.getCheck());
 		}
+		System.out.println("Valor de check = " + partidaDeXadrez.getCheck());
 	}
 	
 	public static void imprimirTabuleiro(PecaDeXadrez[][] pecas) {
