@@ -11,6 +11,7 @@ public class Peao extends PecaDeXadrez{
 		super(tabuleiro, cor);
 	}
 
+	
 	@Override
 	public boolean[][] movimentosPossiveis() {
 		
@@ -21,25 +22,25 @@ public class Peao extends PecaDeXadrez{
 		if (getCor() == Cor.BRANCO) {
 			
 			// Mover
-			auxiliar.definirValores(posicao.getLinha() -1, posicao.getColuna());
+			auxiliar.definirValores(posicao.getLinha() - 1, posicao.getColuna());
 			if (getTabuleiro().posicaoExiste(auxiliar) && !getTabuleiro().temUmaPeca(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
 			
-			auxiliar.definirValores(posicao.getLinha() -2, posicao.getColuna());
-			Posicao p2 = new Posicao(posicao.getLinha() -1, posicao.getColuna());
+			auxiliar.definirValores(posicao.getLinha() -  2, posicao.getColuna());
+			Posicao p2 = new Posicao(posicao.getLinha() - 1, posicao.getColuna());
 			if (getTabuleiro().posicaoExiste(auxiliar) && !getTabuleiro().temUmaPeca(auxiliar) && 
 					getTabuleiro().posicaoExiste(p2) && !getTabuleiro().temUmaPeca(p2) && getContagemDeMovimentos() == 0) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
 			
 			// Capiturar
-			auxiliar.definirValores(posicao.getLinha() -1, posicao.getColuna() -1);
+			auxiliar.definirValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
 			if (getTabuleiro().posicaoExiste(auxiliar) && existPecaAdversaria(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
 			
-			auxiliar.definirValores(posicao.getLinha() -1, posicao.getColuna() + 1);
+			auxiliar.definirValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
 			if (getTabuleiro().posicaoExiste(auxiliar) && existPecaAdversaria(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
@@ -47,12 +48,12 @@ public class Peao extends PecaDeXadrez{
 		} else {
 			
 			// Mover
-			auxiliar.definirValores(posicao.getLinha() +1, posicao.getColuna());
+			auxiliar.definirValores(posicao.getLinha() + 1, posicao.getColuna());
 			if (getTabuleiro().posicaoExiste(auxiliar) && !getTabuleiro().temUmaPeca(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
 			
-			auxiliar.definirValores(posicao.getLinha() +2, posicao.getColuna());
+			auxiliar.definirValores(posicao.getLinha() + 2, posicao.getColuna());
 			Posicao p2 = new Posicao(posicao.getLinha() + 1, posicao.getColuna());
 			if (getTabuleiro().posicaoExiste(auxiliar) && !getTabuleiro().temUmaPeca(auxiliar) && 
 					getTabuleiro().posicaoExiste(p2) && !getTabuleiro().temUmaPeca(p2) && getContagemDeMovimentos() == 0) {
@@ -60,12 +61,12 @@ public class Peao extends PecaDeXadrez{
 			}
 			
 			// Capiturar
-			auxiliar.definirValores(posicao.getLinha() +1, posicao.getColuna() -1);
+			auxiliar.definirValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
 			if (getTabuleiro().posicaoExiste(auxiliar) && existPecaAdversaria(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}
 			
-			auxiliar.definirValores(posicao.getLinha() +1, posicao.getColuna() + 1);
+			auxiliar.definirValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
 			if (getTabuleiro().posicaoExiste(auxiliar) && existPecaAdversaria(auxiliar)) {
 				matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 			}

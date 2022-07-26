@@ -75,7 +75,6 @@ public class Rei extends PecaDeXadrez{
 		if (getTabuleiro().posicaoExiste(auxiliar) && podeMover(auxiliar)) {
 			matriz[auxiliar.getLinha()][auxiliar.getColuna()] = true;
 		}
-		
 		return matriz;
 	}
 	
