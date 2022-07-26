@@ -32,7 +32,7 @@ public class PosicaoDeXadrez {
 	}
 	
 	protected static PosicaoDeXadrez daPosicao(Posicao posicao) {
-		return new PosicaoDeXadrez((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
+		return new PosicaoDeXadrez((char)('a' + posicao.getColuna()), 8 - posicao.getLinha());
 	}
 
 	@Override

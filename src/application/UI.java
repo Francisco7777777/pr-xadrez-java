@@ -53,7 +53,17 @@ public class UI {
 		imprimirPecaCapitulada(capituradas);
 		System.out.println();
 		System.out.println("Turno: " + partidaDeXadrez.getTurno());
-		System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
+		
+		if (!partidaDeXadrez.getCheckMate()) {
+			System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
+			if (partidaDeXadrez.getCheck()) {
+				System.out.println("CHECK!! ");
+				System.out.println("Valor de check = " + partidaDeXadrez.getCheck());
+			}
+		} else {
+			System.out.println("CHECKMATE!!!");
+			System.out.println("Vencedor: " + partidaDeXadrez.getJogadorAtual());
+		}
 	}
 	
 	public static void imprimirTabuleiro(PecaDeXadrez[][] pecas) {
