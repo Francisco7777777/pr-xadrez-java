@@ -9,6 +9,7 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.peca.Rei;
 import xadrez.peca.Torre;
+import xadrez.peca.Peao;
 
 public class PartidaDeXadrez {
 	
@@ -90,7 +91,9 @@ public class PartidaDeXadrez {
 	}
 
 	private Peca realizarMovimento(Posicao inicial, Posicao poFinal) {
-		Peca p = tabuleiro.removerPeca(inicial);
+	
+		PecaDeXadrez p = (PecaDeXadrez) tabuleiro.removerPeca(inicial);
+		p.incrementarContagemDeMovimentos();
 		Peca pecaCapiturada = tabuleiro.removerPeca(poFinal);
 		
 		if (pecaCapiturada != null) {
@@ -103,7 +106,8 @@ public class PartidaDeXadrez {
 	}
 
 	private void desfazerMovimento(Posicao pInicial, Posicao pFinal, Peca pecaCapiturada) {
-		Peca p = tabuleiro.removerPeca(pFinal);
+		PecaDeXadrez p = (PecaDeXadrez) tabuleiro.removerPeca(pFinal);
+		p.decrementarContagemDeMovimentos();
 		tabuleiro.colocarPeca(p, pInicial);
 		
 		if (pecaCapiturada != null) {
@@ -193,11 +197,28 @@ public class PartidaDeXadrez {
 	public void configuracaoInicial() {
 
 		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 		
-		colocarNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('d', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('e', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('f', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('g', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));
 	}
 	
 	private void colocarNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
