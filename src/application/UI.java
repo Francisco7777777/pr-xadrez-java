@@ -58,11 +58,11 @@ public class UI {
 			System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
 			if (partidaDeXadrez.getCheck()) {
 				System.out.println("CHECK!! ");
-				System.out.println("Valor de check = " + partidaDeXadrez.getCheck());
 			}
 		} else {
 			System.out.println("CHECKMATE!!!");
 			System.out.println("Vencedor: " + partidaDeXadrez.getJogadorAtual());
+			System.out.println("Valor de check = " + partidaDeXadrez.getCheck());
 		}
 	}
 	
