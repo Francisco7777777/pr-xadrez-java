@@ -39,6 +39,12 @@ public class Programa {
 				if (pecaCapiturada != null) {
 					capituradas.add(pecaCapiturada);
 				}
+				
+				if (partidaDeXadrez.getPromovida() != null) {
+					System.out.print("Insira a peca para promocao (B/C/T/Q): ");
+					String tipo = sc.nextLine().toUpperCase();
+					partidaDeXadrez.substituirPecaPromovida(tipo);
+				}
 			
 			} catch (XadrezException e) {
 				System.out.println(e.getMessage());
