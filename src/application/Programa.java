@@ -28,7 +28,7 @@ public class Programa {
 				
 				boolean[][] movimentosPossiveis = partidaDeXadrez.movimentosPossiveis(inicial);
 				UI.limparTela();
-				UI.imprimirTabuleiro(partidaDeXadrez.obterPeca(), movimentosPossiveis);
+				UI.imprimirTabuleiro(partidaDeXadrez.pegarPeca(), movimentosPossiveis);
 				
 				System.out.println();
 				System.out.print("P final: ");
@@ -43,15 +43,19 @@ public class Programa {
 				if (partidaDeXadrez.getPromovida() != null) {
 					System.out.print("Insira a peca para promocao (B/C/T/Q): ");
 					String tipo = sc.nextLine().toUpperCase();
+					while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("Q")) {
+						System.out.print("Valor inválido! Insira novanente a peca para promocao (B/C/T/Q): ");
+						tipo = sc.nextLine().toUpperCase();
+					}
 					partidaDeXadrez.substituirPecaPromovida(tipo);
 				}
 			
 			} catch (XadrezException e) {
-				System.out.println(e.getMessage());
+				System.out.println(UI.VERMELHO + e.getMessage() + UI.REDEFINIR);
 				sc.nextLine();
 			
 			} catch (InputMismatchException e) {
-				System.out.println(e.getMessage());
+				System.out.println(UI.VERMELHO + e.getMessage() + UI.REDEFINIR);
 				sc.nextLine();
 			}
 		}

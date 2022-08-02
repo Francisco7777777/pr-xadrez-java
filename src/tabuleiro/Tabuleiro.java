@@ -10,7 +10,7 @@ public class Tabuleiro {
 	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
 			throw new TabuleiroException("Erro ao criar o tabuleiro: "
-					+ "E necessario que haja pelo menos 1 linha e uma coluna.\r\n");
+					+ "E necessario que haja pelo menos 1 linha e uma coluna.");
 		}
 		this.linhas = linhas;
 		this.colunas = colunas;
@@ -41,7 +41,6 @@ public class Tabuleiro {
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
-	
 	public void colocarPeca(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
 			throw new TabuleiroException("Ja a uma peca na posicao! " + posicao);
@@ -66,7 +65,6 @@ public class Tabuleiro {
 		pecas[posicao.getLinha()][posicao.getColuna()] = null;
 		return auxiliar;
 	}
-	
 	
 	public boolean posicaoExiste(Posicao posicao) {
 		return posicaoExiste(posicao.getLinha(), posicao.getColuna());

@@ -9,5 +9,4 @@ public class XadrezException extends TabuleiroException{
 	public XadrezException(String menssagem) {
 		super(menssagem);
 	}
-	
 }

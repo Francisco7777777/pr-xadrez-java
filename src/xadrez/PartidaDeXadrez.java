@@ -1,6 +1,5 @@
 package xadrez;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,7 +63,7 @@ public class PartidaDeXadrez {
 	}
 	
 	
-	public PecaDeXadrez[][] obterPeca() {
+	public PecaDeXadrez[][] pegarPeca() {
 		PecaDeXadrez[][] partida = new PecaDeXadrez[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 		
 		for (int i = 0; i < tabuleiro.getLinhas(); i++) {
@@ -81,12 +80,12 @@ public class PartidaDeXadrez {
 		return tabuleiro.peca(posicao).movimentosPossiveis();
 	}
 	
-	public PecaDeXadrez executarMovimentoDeXadrez (PosicaoDeXadrez pInicial, PosicaoDeXadrez pFinal) {
+	public PecaDeXadrez executarMovimentoDeXadrez(PosicaoDeXadrez pInicial, PosicaoDeXadrez pFinal) {
 		Posicao inicial = pInicial.posicionar();
 		Posicao poFinal = pFinal.posicionar();
 		
 		validarPosicaoInicial(inicial);
-		validarPosicaoAlvo(inicial, poFinal);
+		validarPosicaoEscolhida(inicial, poFinal);
 		Peca pecaCapiturada = realizarMovimento(inicial, poFinal);
 		
 		if (testarCheck(jogadorAtual)) {
@@ -127,7 +126,7 @@ public class PartidaDeXadrez {
 			throw new IllegalStateException("Nao a peca para ser promovida!");
 		}
 		if (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("Q")) {
-			throw new InvalidParameterException("Tipo invalido para a promocao!");
+			return promovida;
 		}
 		
 		Posicao posicao = promovida.obterPosicaoNoXadrez().posicionar();
@@ -144,7 +143,6 @@ public class PartidaDeXadrez {
 	private PecaDeXadrez novaPeca(String tipo, Cor cor) {
 		if (tipo.equals("B")) return new Bispo(tabuleiro, cor);
 		if (tipo.equals("C")) return new Cavalo(tabuleiro, cor);
-		if (tipo.equals("T")) return new Torre(tabuleiro, cor);
 		if (tipo.equals("Q")) return new Rainha(tabuleiro, cor);
 		return new Torre(tabuleiro, cor);
 	}
@@ -256,7 +254,7 @@ public class PartidaDeXadrez {
 		}
 	}
 
-	private void validarPosicaoAlvo(Posicao inicial, Posicao poFinal) {
+	private void validarPosicaoEscolhida(Posicao inicial, Posicao poFinal) {
 		if (!tabuleiro.peca(inicial).movimentoPossivel(poFinal)) {
 			throw  new XadrezException("A peca nao pode ser movida para a posicao escolhida!");
 		}
@@ -268,7 +266,7 @@ public class PartidaDeXadrez {
 	}
 	
 	private Cor oponente(Cor cor) {
-		return (cor == Cor.BRANCO) ? Cor.BRANCO : Cor.PRETO;
+		return (cor == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
 	}
 	
 	private PecaDeXadrez Rei(Cor cor) {

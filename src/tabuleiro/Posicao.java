@@ -6,9 +6,9 @@ public class Posicao {
 	private int coluna;
 	
 	
-	public Posicao(int linha, int coluno) {
+	public Posicao(int linha, int coluna) {
 		this.linha = linha;
-		this.coluna = coluno;
+		this.coluna = coluna;
 	}
 
 	
@@ -38,5 +38,4 @@ public class Posicao {
 	public String toString() {
 		return linha + ", " + coluna;
 	}
-	
 }

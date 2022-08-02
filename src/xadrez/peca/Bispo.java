@@ -14,8 +14,8 @@ public class Bispo extends PecaDeXadrez{
 	
 	@Override
 	public boolean[][] movimentosPossiveis() {
-		
 		boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		
 		Posicao auxiliar = new Posicao(0, 0);
 
 		// Para NO.

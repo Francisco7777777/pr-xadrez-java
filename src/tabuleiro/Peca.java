@@ -9,8 +9,7 @@ public abstract class Peca {
 	public Peca(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
 		
-		/* Inicialmente a peça é iniciada com a posição null, 
-		 * pois ainda não foi posicionada no tabuleiro. */
+		// Inicialmente a peça é iniciada com a posição null, pois ainda não foi posicionada no tabuleiro.
 	}
 
 
@@ -26,7 +25,6 @@ public abstract class Peca {
 	}
 	
 	public boolean existeAlgumMovimentoPossivel() {
-		
 		boolean[][] matriz = movimentosPossiveis();
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz.length; j++) {

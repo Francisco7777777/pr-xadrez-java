@@ -23,7 +23,6 @@ public class Peao extends PecaDeXadrez{
 		boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 		Posicao auxiliar = new Posicao(0, 0);
 		
-		
 		if (getCor() == Cor.BRANCO) {
 			
 			// Mover
@@ -62,9 +61,8 @@ public class Peao extends PecaDeXadrez{
 					matriz[direita.getLinha() - 1][direita.getColuna()] = true;
 				}
 			}
-			
-		} else {
-			
+		} 
+		else {
 			// Mover
 			auxiliar.definirValores(posicao.getLinha() + 1, posicao.getColuna());
 			if (getTabuleiro().posicaoExiste(auxiliar) && !getTabuleiro().temUmaPeca(auxiliar)) {
